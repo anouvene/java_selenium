@@ -10,8 +10,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.net.URISyntaxException;
-
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class Form {
     public static FirefoxDriver driver;
@@ -29,53 +27,34 @@ public class Form {
     @Test
     public void test001_fillForm() {
         // Username
-        WebElement username = mp.findUsername();
-        username.click();
-        username.sendKeys("udemy");
+        mp.setUsernameInput("udemy");
 
         // Password
-        WebElement password = mp.findPassword();
-        password.click();
-        password.sendKeys("Udemy");
+        mp.setPasswordInput("Udemy");
 
         // Comments
-        WebElement comments = mp.findComments();
-        comments.click();
-        comments.clear();
-        comments.sendKeys("Form subscription testing");
+        mp.setCommentsTexarea("Form subscription testing");
 
         // FileName
-        WebElement filename = mp.findFilename();
-        try {
-            String imagePath = MainPage.getAbsolutePath("images/dog.jpg");
-            filename.sendKeys(imagePath);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+       mp.upload("images/dog.jpg");
 
         // Checkbox
-        //WebElement checkboxe3 = driver.findElement(By.cssSelector("input[name='checkboxes[]'][value='cb3']"));
-        //WebElement checkboxe3 = driver.findElement(By.xpath("//input[@name='checkboxes[]' and @value='cb3']"));
-        mp.findInput("cb3").click();
-        mp.findInput("cb2").click();
+        mp.clickInput("cb3"); // Désactiver Checkbox 3
+        mp.clickInput("cb2");
 
         // Radio
-        mp.findInput("rd1").click();
+        mp.clickInput("rd1");
 
         // Select multiple
-        mp.findOption("ms1").click();
-        mp.findOption("ms2").click();
-        mp.findOption("ms4").click(); // Désactiver option 4
+        mp.clickOption("ms1");
+        mp.clickOption("ms2");
+        mp.clickOption("ms4"); // Désactiver Selection item 4
 
         // Select simple : dropdown et click sur option 5
-        // Optionnel: pas besoin de dérouler le sélect
-        // WebElement dropdown = driver.findElement(By.cssSelector("select[name='dropdown']"));
-        // dropdown.click();
-
-        mp.findOption("dd5").click();
+        mp.clickOption("dd5");
 
         // Bouton submit :
-        mp.findInput("submit").click();
+        mp.clickInput("submit");
 
     }
     @Test
