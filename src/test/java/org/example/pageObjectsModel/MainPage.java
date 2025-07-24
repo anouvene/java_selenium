@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 /**
  * Page object
- * Aaméliorer la qualité, la maintenabilité et la lisibilité des tests automatisés
+ * Améliorer la qualité, la maintenabilité et la lisibilité des tests automatisés
  * en :
  * - encapsulant des éléments de la page web dans des objets spécifiques
  * - évitant la duplication de code par le biais des méthodes réutilisables.
